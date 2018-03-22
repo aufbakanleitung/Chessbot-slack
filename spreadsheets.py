@@ -8,11 +8,10 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.js
 client = gspread.authorize(credentials)
 sheet = client.open('Chessgames overview Groningen').worksheet("Gamelist")
 sheet2 = client.open('Chessgames overview Groningen').worksheet("Scorelist")
-pp = pprint.PrettyPrinter()
 
+pp = pprint.PrettyPrinter()
 # --------Some practice commands----------
 chess = sheet.get_all_records()
-scorelist = sheet2.get_all_records()
 # pp.pprint(chess)
 # pp.pprint(scorelistlist)
 # print(scorelist)
@@ -21,36 +20,31 @@ scorelist = sheet2.get_all_records()
 # pp.pprint(players)
 
 
-def getplayers():
+score_list = sheet2.get_all_records()
+
+
+def get_players():
     players = sheet.col_values(2) + sheet.col_values(3)
-    playerList = []
+    player_list = []
 
     for p in players:
         if p != "Name1" and p !="Name2":
-            playerList.append(p)
+            player_list.append(p)
 
-    uniquePlayers = list(sorted(set(playerList)))
-    print(uniquePlayers)
-    return uniquePlayers
+    unique_players = list(sorted(set(player_list)))
+    print(unique_players)
+    return unique_players
 
 
-def insertrow(sheetNumber):
+def insert_row(sheetNumber):
     row = ["", 0, 0]
     index = sheetNumber.row_count + 1
     sheet.insert_row(row,index)
 
 
-def addgame(name1, name2, result):
-    import datetime
-    date = str(datetime.datetime.today())
-    row = [date, name1, name2, result]
-    sheet.insert_row(row, sheet.row_count)
-# addGame("Ieremias Athanasiadis", "Martin Platje", "win")
-
-
-def createplayers():
-    players = getplayers()
-    playerDict = {'Name': '', 'Score': 0, 'Total games': 0}
+def create_players():
+    players = get_players()
+    player_dict = {'Name': '', 'Score': 0, 'Total games': 0}
 
     counter = 2
     for p in players:
@@ -59,44 +53,59 @@ def createplayers():
         sheet2.update_cell(counter, 3, 0)  # Total games
         counter += 1
     print(sheet2.get_all_records())
-    return playerDict
+    return player_dict
 
 
-def addpoint(name, result1, result2):
+def add_point(name, result1, result2):
     cell = sheet2.find(name)
     score = int(sheet2.cell(cell.row, cell.col+1).value) + result1
-    totalgames = int(sheet2.cell(cell.row, cell.col+2).value) + result2
+    total_games = int(sheet2.cell(cell.row, cell.col + 2).value) + result2
 
     sheet2.update_cell(cell.row, cell.col+1, score)  # add to Score
-    sheet2.update_cell(cell.row, cell.col+2, totalgames)  # add to Total games
+    sheet2.update_cell(cell.row, cell.col + 2, total_games)  # add to Total games
 
 
-def countgames():
+def add_to_gamelist(name1, name2, result):
+    import datetime
+    date = str(datetime.date.today())
+    row = [date, name1, name2, result]
+    sheet.insert_row(row, sheet.row_count)
+
+
+def add_to_scorelist(name1, name2, result):
+    if result == "win":
+        add_point(name1, 1, 1)
+        add_point(name2, -1, 1)
+        print(name1 + " has won the game")
+    elif result == "lose":
+        add_point(name1, -1, 1)
+        add_point(name2, 1, 1)
+        print(name1 + " has lost the game")
+    elif result == "draw":
+        add_point(name1, 0, 1)
+        add_point(name2, 0, 1)
+        print(name1 + " and " + name2[n] + " played stalemate")
+    else:
+        print("This is not a valid game result. Please input win/lose/draw")
+
+
+def add_game(name1, name2, result):
+    add_to_gamelist(name1, name2, result)
+    add_to_scorelist(name1, name2, result)
+
+# add_game("Herman van der Veer", "Ieremias Athanasiadis", "lose")
+
+
+def count_games():
     name1 = sheet.col_values(2)
     name2 = sheet.col_values(3)
     result = sheet.col_values(4)
     for n in range(1,len(name1)):
-        if result[n] == "win":
-            addpoint(name1[n], 1, 1)
-            addpoint(name2[n], -1, 1)
-            print(name1[n] + " has won the game")
-
-        elif result[n] == "lose":
-            addpoint(name1[n], -1, 1)
-            addpoint(name2[n], 1, 1)
-            print(name1[n] + " has lost the game")
-
-        elif result[n] == "draw":
-            addpoint(name1[n], 0, 1)
-            addpoint(name2[n], 0, 1)
-            print(name1[n] + " and " + name2[n] + " played stalemate")
-
-        else:
-            print("This is not a valid game result. Please input win/lose/draw")
+        add_to_scorelist(name1[n],name2[n],result[n])
 
 
-def reloadscorelist():
-    createplayers()
-    countgames()
+def reload_scorelist():
+    create_players()
+    count_games()
 
-reloadscorelist()
+# reload_scorelist()
