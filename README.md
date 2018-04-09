@@ -1,5 +1,5 @@
 # Chessbot-slack
-Chessbot running in Python on Bluemix
+Slackbot that keeps score of CIC-Groningen Chessgames. Written in Python running on Bluemix.
 
 TODO: 1. Make integration layer agnostic of database type 
 
