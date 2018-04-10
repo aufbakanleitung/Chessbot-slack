@@ -13,3 +13,5 @@ Guide: http://pmbaumgartner.github.io/slack-commands-with-python-and-flask.html
 1. Make integration layer agnostic of database type 
 
 2. Switch database from GoogleSheets to NoSQL
+
+3. Unit tests + git push hooks
