@@ -1,7 +1,7 @@
 # Chessbot-slack
 Slackbot that keeps score of CIC-Groningen Chessgames. Written in Python, running on Bluemix.
 
-# Addition developement software 
+# Addition development software 
 
 Ngrok: https://ngrok.com/
 
