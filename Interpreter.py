@@ -1,4 +1,4 @@
-from GoogleSheets import spreadsheets
+from spreadsheets import add_game, print_gamelist, print_scorelist
 from flask import Flask, request
 import os
 
@@ -17,17 +17,17 @@ def chessbot():
         post_dict = request.form
         game_result = post_dict['text'].split()
         print(game_result)
-    return spreadsheets.add_game(game_result[0], game_result[1], game_result[2])
+    return add_game(game_result[0], game_result[1], game_result[2])
 
 
 @app.route('/gamelist', methods=['POST'])
 def gamelist():
-    return spreadsheets.print_gamelist()
+    return print_gamelist()
 
 
 @app.route('/scorelist', methods=['POST'])
 def scorelist():
-    return spreadsheets.print_scorelist()
+    return print_scorelist()
 
 
 if __name__ == '__main__':

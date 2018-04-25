@@ -1,6 +1,8 @@
 Flask==0.12.2
-cf-deployment-tracker==1.0.4
+cf-deployment-tracker==1.0.5
 cloudant==2.4.0
-gspread==2.0.0
+gspread==3.0.0
 oauth2client==4.1.2
 pprint==0.1
+tabulate==0.8.2
+slackclient==1.2.0

@@ -1,1 +1,1 @@
-web: python spreadsheets.py
+web: python3 Interpreter.py

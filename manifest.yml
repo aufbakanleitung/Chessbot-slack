@@ -1,5 +1,5 @@
 ---
 applications:
- - name: Chessbot-googlesheets
+ - name: Chessbot
    random-route: true
    memory: 128M
