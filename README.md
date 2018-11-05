@@ -6,7 +6,7 @@ Slackbot that keeps score of CIC-Groningen Chessgames. Written in Python, runnin
 Ngrok: https://ngrok.com/ - secure introspectable tunnels to localhost so you can test on the machine
 Start with: ngrok http 5000
 
-Flask: http://flask.pocoo.org/docs/0.12/quickstart/#quickstart - To deploy the code on the cloud platform
+Flask: http://flask.pocoo.org/docs/0.12/quickstart/#quickstart - To run a weblistener that Slack can connect to
 
 Guide: http://pmbaumgartner.github.io/slack-commands-with-python-and-flask.html
 
