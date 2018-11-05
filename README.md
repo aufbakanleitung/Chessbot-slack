@@ -15,6 +15,6 @@ Guide: http://pmbaumgartner.github.io/slack-commands-with-python-and-flask.html
 # ToDo list
 1. Make integration layer agnostic of database type 
 
-2. Switch database from GoogleSheets to NoSQL
+2. Switch database from GoogleSheets to NoSQL (MongoDb)
 
 3. Unit tests + git push hooks
