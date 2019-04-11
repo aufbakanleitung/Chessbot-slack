@@ -10,7 +10,7 @@ Flask: http://flask.pocoo.org/docs/0.12/quickstart/#quickstart - To run a weblis
 
 Cloud-Foundry: to push to Bluemix - `cf login -a https://api.ng.bluemix.net` `cf push chessbot`
 
-Guide: http://pmbaumgartner.github.io/slack-commands-with-python-and-flask.html
+Guide: https://pmbaumgartner.github.io/blog/slack-commands-with-python-and-flask/
 
 # ToDo list
 1. Make integration layer agnostic of database type 
