@@ -18,3 +18,5 @@ Guide: https://pmbaumgartner.github.io/blog/slack-commands-with-python-and-flask
 2. Switch database from GoogleSheets to NoSQL (MongoDb)
 
 3. Unit tests + git push hooks
+
+4. leuk zijn
